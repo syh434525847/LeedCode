@@ -1,4 +1,4 @@
-package com.scimall.algorithm4.sort;
+package com.shiyuhao.algorithm4.sort;
 
 /**
  * @Description 插入排序

@@ -1,6 +1,4 @@
-package com.scimall.algorithm4.sort;
-
-import com.scimall.common.StdIn;
+package com.shiyuhao.algorithm4.sort;
 
 /**
  * @Description 选择排序，每次选择最小的那个元素和最前面的元素进行交换

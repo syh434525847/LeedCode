@@ -1,28 +1,16 @@
-package com.scimall.algorithm4.sort;
+package com.shiyuhao.algorithm4.sort;
+
+import com.shiyuhao.common.StdIn;
 
 /**
- * @Description 希尔排序
+ * @Description 排序类模板
  * @Author shiyuhao
  * @Email shi.yuhao@scimall.org.cn
- * @Date 2020/8/3 3:50 下午
+ * @Date 2020/8/3 2:22 下午
  **/
-public class ShellSort {
+public class SortExample {
     public static void sort(Comparable[] a) {
-        int N = a.length;
-        int h = 1;
-        // 计算增量间隔
-        while (h < N / 3) {
-            h = 3 * h + 1;
-        }
-        while (h >= 1) {
-            for (int i = h; i < N; i++) {
-                for (int j = i; j >= h && less(a[j], a[j - h]); j -= h) {
-                    exch(a, j, j - h);
-                }
-            }
-            // 重新获取间隔，这时，间隔会逐渐变小，最后变成1，排序结束
-            h = h / 3;
-        }
+
     }
 
     private static boolean less(Comparable v, Comparable w) {
@@ -52,7 +40,7 @@ public class ShellSort {
     }
 
     public static void main(String[] args) {
-        String[] a = new String[]{"A", "C", "B", "D"};
+        String[] a = StdIn.readStrings();
         sort(a);
         assert isSorted(a);
         show(a);

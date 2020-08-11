@@ -1,4 +1,4 @@
-package com.scimall.common;
+package com.shiyuhao.common;
 
 /**
  * @Description TODO

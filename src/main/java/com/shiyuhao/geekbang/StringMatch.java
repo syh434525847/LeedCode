@@ -1,4 +1,4 @@
-package com.scimall.geekbang;
+package com.shiyuhao.geekbang;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package com.scimall.algorithm4.sort;
+package com.shiyuhao.algorithm4.sort;
 
 import java.util.Stack;
 

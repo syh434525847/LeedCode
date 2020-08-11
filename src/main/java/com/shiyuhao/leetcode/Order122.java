@@ -1,4 +1,4 @@
-package com.scimall.leetcode;
+package com.shiyuhao.leetcode;
 
 /**
  * @Description

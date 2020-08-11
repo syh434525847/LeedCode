@@ -1,6 +1,6 @@
-package com.scimall.leetcode;
+package com.shiyuhao.leetcode;
 
-import com.scimall.common.ListNode;
+import com.shiyuhao.common.ListNode;
 
 /**
  * @Description TODO

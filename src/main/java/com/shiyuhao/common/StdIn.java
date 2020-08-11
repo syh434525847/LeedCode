@@ -1,4 +1,4 @@
-package com.scimall.common;
+package com.shiyuhao.common;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;

@@ -1,4 +1,4 @@
-package com.scimall.leetcode;
+package com.shiyuhao.leetcode;
 
 /**
  * @Description leetcode1470 重新排列新数组

@@ -1,38 +1,33 @@
-package com.scimall.algorithm4.sort;
+package com.shiyuhao.algorithm4.sort;
 
 /**
- * @Description 归并排序，自顶向下，递归解决
+ * @Description 归并排序，自底向上，循环解决
  * @Author shiyuhao
  * @Email shi.yuhao@scimall.org.cn
  * @Date 2020/8/4 2:40 下午
  **/
-public class MergeSort {
+public class MergeBUSort {
 
-    private static Comparable[] tmp;
+    private static Comparable[] aux;
 
     public static void sort(Comparable[] a) {
         int N = a.length;
-        sort(a, 0, N - 1);
-    }
-
-    public static void sort(Comparable[] a, int p, int r) {
-        if (p >= r) {
-            return;
+        aux = new Comparable[N];
+        for (int sz = 1; sz < N; sz = sz + sz) {
+            for (int lo = 0; lo < N - sz; lo += sz + sz) {
+                merge(a, lo, lo + sz - 1, Math.min(lo + sz + sz - 1, N - 1));
+            }
         }
-        int q = p + (r - p) / 2;
-        sort(a, p, q);
-        sort(a, q + 1, r);
-        merge(a, p, q, r);
     }
 
     public static void merge(Comparable[] a, int p, int q, int r) {
-        tmp = new Comparable[r - p + 1];
+        aux = new Comparable[r - p + 1];
         int i = p, j = q + 1, k = 0;
         while (i <= q && j <= r) {
             if (less(a[i], a[j])) {
-                tmp[k++] = a[i++];
+                aux[k++] = a[i++];
             } else {
-                tmp[k++] = a[j++];
+                aux[k++] = a[j++];
             }
         }
 
@@ -44,11 +39,11 @@ public class MergeSort {
         }
 
         while (start <= end) {
-            tmp[k++] = a[start++];
+            aux[k++] = a[start++];
         }
 
-        for (int m = 0; m < tmp.length; m++) {
-            a[p + m] = tmp[m];
+        for (int m = 0; m < aux.length; m++) {
+            a[p + m] = aux[m];
         }
     }
 
