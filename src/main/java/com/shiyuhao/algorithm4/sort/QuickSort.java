@@ -10,7 +10,7 @@ import java.util.Stack;
  **/
 public class QuickSort {
     public static void sort(Comparable[] a) {
-        sort1(a, 0, a.length - 1);
+        sort(a, 0, a.length - 1);
     }
 
     /**
@@ -50,13 +50,14 @@ public class QuickSort {
         if (hi <= lo) {
             return;
         }
-        int j = partition(a, lo, hi);
+        int j = partition1(a, lo, hi);
         sort(a, lo, j - 1);
         sort(a, j + 1, hi);
     }
 
     private static int partition(Comparable[] a, int lo, int hi) {
         int i = lo, j = hi + 1;
+        // 以第一个元素为中间分割元素
         Comparable v = a[lo];
 
         while (true) {
@@ -78,6 +79,24 @@ public class QuickSort {
         // 将选择出来做切分的元素，放到正确的位置（左边小于它，右边的元素都大于它）
         exch(a, lo, j);
         return j;
+    }
+
+    private static int partition1(Comparable[] a, int p, int r) {
+        int i = p;
+        // 取最后一个数为分区数
+        Comparable pivot = a[r];
+        for (int j = p; j < r; j++) {
+            if (less(a[j], pivot)) {
+                if (i == j) {
+                    i++;
+                } else {
+                    exch(a, i, j);
+                    i++;
+                }
+            }
+        }
+        exch(a, i, r);
+        return i;
     }
 
 
