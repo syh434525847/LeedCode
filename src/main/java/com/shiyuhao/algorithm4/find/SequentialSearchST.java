@@ -1,7 +1,7 @@
 package com.shiyuhao.algorithm4.find;
 
 /**
- * @Description TODO
+ * @Description 符号表，无序链表实现
  * @Author shiyuhao
  * @Email shi.yuhao@scimall.org.cn
  * @Date 2020/8/12 10:46 上午
