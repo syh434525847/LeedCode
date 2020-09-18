@@ -1,6 +1,8 @@
 package com.shiyuhao.algorithm4.find;
 
-import com.sun.jmx.snmp.SnmpNull;
+import edu.princeton.cs.algs4.In;
+
+import java.util.*;
 
 /**
  * @Description 二叉查找树BST
@@ -15,8 +17,10 @@ public class BST<Key extends Comparable<Key>, Value> {
         bst.put(2, "2");
         bst.put(1, "1");
         bst.put(3, "3");
-        bst.deleteMin();
-        System.out.println(bst.size());
+        bst.deleteMax();
+        System.out.println(bst.get(1));
+        System.out.println(bst.get(2));
+        System.out.println(bst.get(3));
     }
 
     private Node root;
@@ -93,6 +97,17 @@ public class BST<Key extends Comparable<Key>, Value> {
             return x;
         }
         return min(x.left);
+    }
+
+    public Key max() {
+        return min(root).key;
+    }
+
+    private Node max(Node x) {
+        if (x.right == null) {
+            return x;
+        }
+        return max(x.right);
     }
 
     public Key floor(Key key) {
@@ -200,4 +215,85 @@ public class BST<Key extends Comparable<Key>, Value> {
         x.N = size(x.left) + size(x.right) + 1;
         return x;
     }
+
+    public void deleteMax() {
+        deleteMax(root);
+    }
+
+    private Node deleteMax(Node x) {
+        if (x.right == null) {
+            return x.left;
+        }
+        x.right = deleteMax(x.right);
+        x.N = size(x.right) + size(x.left) + 1;
+        return x;
+    }
+
+    public void delete(Key key) {
+        root = delete(root, key);
+    }
+
+    private Node delete(Node x, Key key) {
+        if (x == null) {
+            return null;
+        }
+        int cmp = key.compareTo(x.key);
+        if (cmp > 0) {
+            x.right = delete(x.right, key);
+        } else if (cmp < 0) {
+            x.left = delete(x.left, key);
+        } else {
+            if (x.right == null) {
+                return x.left;
+            }
+            if (x.left == null) {
+                return x.right;
+            }
+            Node t = x;
+            x = min(t.right);
+            x.right = deleteMin(t.right);
+            x.left = t.left;
+        }
+        x.N = size(x.left) + size(x.right) + 1;
+        return x;
+    }
+
+    private void print(Node x) {
+        if (x == null) {
+            return;
+        }
+        print(x.left);
+        System.out.println(x.key);
+        print(x.right);
+    }
+
+    public Iterable<Key> keys() {
+        return keys(min(), max());
+    }
+
+    public Iterable<Key> keys(Key lo, Key hi) {
+        Queue<Key> queue = new LinkedList<>();
+        keys(root, queue, lo, hi);
+        return queue;
+    }
+
+    private void keys(Node x, Queue<Key> queue, Key lo, Key hi) {
+        if (x == null) {
+            return;
+        }
+        int cmplo = lo.compareTo(x.key);
+        int cmphi = hi.compareTo(x.key);
+        if (cmplo < 0) {
+            keys(x.left, queue, lo, hi);
+        }
+        if (cmplo <= 0 && cmphi >= 0) {
+            queue.add(x.key);
+        }
+        if (cmphi > 0) {
+            keys(x.right, queue, lo, hi);
+        }
+    }
+
+
+
 }
