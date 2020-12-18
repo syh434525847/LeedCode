@@ -1,5 +1,10 @@
 package com.shiyuhao.algorithm4.find;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * @Description 红黑树
  * @Author shiyuhao
@@ -9,12 +14,16 @@ package com.shiyuhao.algorithm4.find;
 public class RedBlackBST<Key extends Comparable<Key>, Value> {
 
     public static void main(String[] args) {
-        RedBlackBST redBlackBST = new RedBlackBST();
-        redBlackBST.put("A", "A");
-        redBlackBST.put("C", "C");
-        redBlackBST.put("E", "E");
-        redBlackBST.put("H", "H");
-        System.out.println(redBlackBST);
+//        RedBlackBST redBlackBST = new RedBlackBST();
+//        redBlackBST.put("A", "A");
+//        redBlackBST.put("C", "C");
+//        redBlackBST.put("E", "E");
+//        redBlackBST.put("H", "H");
+//        System.out.println(redBlackBST);
+        List<Integer> list = new ArrayList<>();
+        System.out.println(list.size());
+        list.add(0, 1);
+        list.forEach(System.out::println);
     }
 
     private Node root;
