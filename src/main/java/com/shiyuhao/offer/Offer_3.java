@@ -85,7 +85,7 @@ public class Offer_3 {
     }
 
     public static void main(String[] args) {
-        int[] nums = new int[]{2, 3, 1, 0, 5};
+        int[] nums = new int[]{2, 3, 1, 0, 5, 3};
         System.out.println(duplicated1(nums, nums.length));
         System.out.println(duplicated2(nums, nums.length));
         System.out.println(duplicated3(nums, nums.length));

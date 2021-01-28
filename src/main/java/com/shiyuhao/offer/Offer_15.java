@@ -1,5 +1,7 @@
 package com.shiyuhao.offer;
 
+import java.util.Scanner;
+
 /**
  * @Description 位运算，判断有多少个1
  * @Author shiyuhao
@@ -9,8 +11,10 @@ package com.shiyuhao.offer;
 public class Offer_15 {
 
     public static void main(String[] args) {
-        System.out.println(numberOf1(15));
-        System.out.println(numberOf2(15));
+        Scanner scanner = new Scanner(System.in);
+        String next = scanner.next();
+        System.out.println(numberOf1(19934318));
+        System.out.println(numberOf2(19934318));
     }
 
     private static int numberOf1(int n) {

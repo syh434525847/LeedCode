@@ -9,10 +9,64 @@ import java.util.*;
  * @Date 2020/8/26 3:35 下午
  **/
 public class Test {
+    private static Queue<Character> queue = new LinkedList<>();
     public static void main(String[] args) {
-        System.out.println(2147483647 - (-2147483647));
-
+        String str = "(7+5*4*3+6)+2";
+        for (int i = 0;i<str.length();i++) {
+            queue.add(str.charAt(i));
+        }
+        System.out.println(helper(queue));
     }
+
+    private static int helper(Queue<Character> queue) {
+        Stack<Integer> stk = new Stack<>();
+        int num = 0;
+        char sign = '+';
+        for (int i = 0; i < queue.size(); i++) {
+            char c = queue.poll();
+            if (isdigit(c)) {
+                num = 10 * num + (c - '0');
+            }
+            if (c == '(') {
+                num = helper(queue);
+            }
+            if ((!isdigit(c) && c != ' ') || i == queue.size() - 1) {
+                int pre;
+                switch (sign) {
+                    case '+':
+                        stk.push(num);
+                        break;
+                    case '-':
+                        stk.push(-num);
+                        break;
+                    case '*':
+                        pre = stk.pop();
+                        stk.push(pre * num);
+                        break;
+                    case '/':
+                        pre = stk.pop();
+                        stk.push(pre / num);
+                        break;
+                }
+                sign = c;
+                num = 0;
+            }
+
+            if (c == ')') {
+                break;
+            }
+        }
+        int res = 0;
+        while (!stk.isEmpty()) {
+            res += stk.pop();
+        }
+        return res;
+    }
+
+    private static boolean isdigit(char c) {
+        return c >= '0' && c <= '9';
+    }
+
     public List<String> summaryRanges(int[] nums) {
         List<String> strList = new ArrayList<>();
         int min = 0;
@@ -31,6 +85,7 @@ public class Test {
         }
         return strList;
     }
+
     public static int maxSubArray(int[] nums) {
         int sum = 0;
         int max = Integer.MIN_VALUE;
@@ -68,7 +123,7 @@ public class Test {
         TreeNode node = new TreeNode(rootVal);
         // 找出比rootVal大的第一个下标
         int index = r;
-        for (int i = l;i < r; i++) {
+        for (int i = l; i < r; i++) {
             if (preorder[i] > rootVal) {
                 index = i;
                 break;
